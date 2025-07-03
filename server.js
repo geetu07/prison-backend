@@ -1039,6 +1039,9 @@ app.delete('/visit/:id', (req, res) => {
 });
 
 
+app.get('/', (req, res) => {
+  res.send('Prison DBMS backend is running');
+});
 
 
 
