@@ -1038,17 +1038,6 @@ app.delete('/visit/:id', (req, res) => {
     });
 });
 
-
-app.get('/', (req, res) => {
-  res.send('Prison DBMS backend is running');
-});
-
-
-
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 const path = require('path');
 
 // Serve static files (HTML, CSS, JS, etc.)
@@ -1058,3 +1047,10 @@ app.use(express.static(path.join(__dirname)));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
