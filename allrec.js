@@ -2,7 +2,7 @@ async function fetchAllRecords() {
     console.log('Fetching all records...');
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/allrecord');
+        const response = await fetch('/allrecord');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

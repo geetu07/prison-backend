@@ -10,7 +10,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/search?query=${encodeURIComponent(searchQuery)}`);
+        const response = await fetch(`/search?query=${encodeURIComponent(searchQuery)}`);
         const data = await response.json();
 
         const prisonerTableBody = document.querySelector("#prisonerTable tbody");

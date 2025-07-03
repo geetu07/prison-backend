@@ -11,7 +11,7 @@ document.getElementById("inmateForm").addEventListener("submit", async function 
     };
 
     try {
-        const response = await fetch("http://localhost:5000/prisoners/add", {
+        const response = await fetch("/prisoners/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)

@@ -8,7 +8,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/prisoners/search?id=${id}`);
+        const response = await fetch(`/prisoners/search?id=${id}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -25,7 +25,7 @@ async function searchPrisoner() {
 // Function to fetch all prisoner records
 async function fetchAllRecords() {
     try {
-        const response = await fetch("http://localhost:5000/prisoners/all");
+        const response = await fetch("/prisoners/all");
         const data = await response.json();
 
         if (response.ok) {
@@ -42,7 +42,7 @@ async function fetchAllRecords() {
 // Function to fetch all prisoners for enrollment
 async function showEnrollInmate() {
     try {
-        const response = await fetch("http://localhost:5000/prisoners/all");
+        const response = await fetch("/prisoners/all");
         const data = await response.json();
 
         if (response.ok) {
@@ -58,7 +58,7 @@ async function showEnrollInmate() {
 
 async function fetchParoleRecords() {
     try {
-        const response = await fetch("http://localhost:5000/parole/all-unapproved");
+        const response = await fetch("/parole/all-unapproved");
         const data = await response.json();
 
         if (response.ok) {
@@ -75,7 +75,7 @@ async function fetchParoleRecords() {
 // Function to handle approving parole
 async function approveParole(requestId) {
     try {
-        const response = await fetch('http://localhost:5000/paroles/approve', {
+        const response = await fetch('/paroles/approve', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ async function approveParole(requestId) {
 
 async function fetchVisitRecords() {
     try {
-        const response = await fetch("http://localhost:5000/visit/all-unapproved");
+        const response = await fetch("/visit/all-unapproved");
         const data = await response.json();
 
         if (response.ok) {
@@ -115,7 +115,7 @@ async function fetchVisitRecords() {
 
 // Function to handle approving visitation
 function approveVisit(visitId) {
-    fetch('http://localhost:5000/visit/approve', {
+    fetch('/visit/approve', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ function approveVisit(visitId) {
 
 // Function to handle rejecting visitation
 function rejectVisit(visitId) {
-    fetch('http://localhost:5000/visit/reject', {
+    fetch('/visit/reject', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

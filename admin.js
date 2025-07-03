@@ -8,7 +8,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`http://127.0.0.1:5000/adminsearch?query=${query}`);
+        const response = await fetch(`/adminsearch?query=${query}`);
         const data = await response.json();
 
         if (data.error) {
