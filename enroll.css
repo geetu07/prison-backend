@@ -38,14 +38,15 @@ input, select, textarea {
 }
 
 button {
-    background-color: #28a745;
+    background-color: #47a2e4;
     color: white;
     padding: 10px;
+    margin-bottom: 10px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #3b83b7;
 }

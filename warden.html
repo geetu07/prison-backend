@@ -12,8 +12,11 @@
     <h2>WARDEN</h2>
     <button class="btn" onclick="fetchAllRecords()">📋 Show All Records</button>
     <button class="btn" onclick="showEnrollInmate()">➕ Enroll Inmate</button>
+    <button class="btn" onclick="window.location.href='wcell.html'">✏️ Cell</button>
+    <button class="btn" onclick="fetchParoleRecords()">✅ Approve Parole Requests</button>
+    <button class="btn" onclick="fetchVisitRecords()">🏦 Visitation Requests</button>
 </div>
-
+ 
 <div class="main-content">
     <h1>Data Results</h1>
 
@@ -41,6 +44,17 @@
         <h2>Enroll Inmate</h2>
         <div id="enrollTableContainer"></div>
         <button class="add-btn" onclick="location.href='enroll.html'">➕ Add Inmate</button>
+    </div>
+
+    <!-- Parole Request Section -->
+    <div id="paroleSection" class="data-section" style="display: none;">
+        <h2>Approve Parole Requests</h2>
+        <div id="parole-records"></div>
+    </div>
+
+    <div id="visitSection" class="data-section" style="display: none;">
+        <h2>Visitation Requests</h2>
+        <div id="visit-records"></div>
     </div>
 </div>
 

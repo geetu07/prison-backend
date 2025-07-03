@@ -6,7 +6,8 @@ document.getElementById("inmateForm").addEventListener("submit", async function 
         DOB: document.getElementById("dob").value,
         Gender: document.getElementById("gender").value,
         Address: document.getElementById("address").value,
-        Sentence_Duration: document.getElementById("sentence_duration").value
+        Sentence_Duration: document.getElementById("sentence_duration").value, 
+        Supervisor_ID: document.getElementById("Supervisor_ID").value
     };
 
     try {
