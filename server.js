@@ -438,22 +438,23 @@ app.post('/submit-parole', (req, res) => {
 app.get("/adminsearch", (req, res) => {
     const searchQuery = req.query.query;
 
-    const prisonerSql = `SELECT 
-    Prisoner.*, 
-    Staff.Name AS Supervisor_Name
+   const prisonerSql = `SELECT 
+    prisoner.*, 
+    staff.Name AS Supervisor_Name
 FROM 
-    Prisoner
+    prisoner
 JOIN 
-    Staff ON Prisoner.Supervisor_ID = Staff.Staff_ID
+    staff ON prisoner.Supervisor_ID = staff.Staff_ID
 WHERE 
-    Prisoner.Name LIKE ?;
-
+    prisoner.Name LIKE ?;
 `;
-    const crimeSql = `SELECT * FROM Crime WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM Prisoner WHERE Name LIKE ?)`;
-    const cellSql = `SELECT * FROM Cell WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM Prisoner WHERE Name LIKE ?)`;
-    const rehabSql = `SELECT * FROM Rehabilitation WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM Prisoner WHERE Name LIKE ?)`;
-    const paroleSql = `SELECT * FROM Parole WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM Prisoner WHERE Name LIKE ?)`;
-    const visitSql = `SELECT * FROM Visit WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM Prisoner WHERE Name LIKE ?)`;
+
+const crimeSql = `SELECT * FROM crime WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM prisoner WHERE Name LIKE ?);`;
+const cellSql = `SELECT * FROM cell WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM prisoner WHERE Name LIKE ?);`;
+const rehabSql = `SELECT * FROM rehabilitation WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM prisoner WHERE Name LIKE ?);`;
+const paroleSql = `SELECT * FROM parole WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM prisoner WHERE Name LIKE ?);`;
+const visitSql = `SELECT * FROM visit WHERE Prisoner_ID IN (SELECT Prisoner_ID FROM prisoner WHERE Name LIKE ?);`;
+
 
     db.query(prisonerSql, [`%${searchQuery}%`], (err, prisoners) => {
         if (err) return res.status(500).json({ error: err.message });
