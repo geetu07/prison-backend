@@ -17,12 +17,14 @@ app.use(bodyParser.json());
     database: 'user_db' // Change this to your database name
 });
 */
+const dbUrl = new URL(process.env.DATABASE_URL);
+
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306
+    host: dbUrl.hostname,
+    user: dbUrl.username,
+    password: dbUrl.password,
+    database: dbUrl.pathname.replace('/', ''),
+    port: dbUrl.port
 });
 
 
