@@ -1,3 +1,9 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -12,7 +18,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         return;
     }
 
-    const response = await fetch('/register', {
+    const response = await fetch(`${BASE_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password, role })

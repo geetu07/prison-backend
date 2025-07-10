@@ -1,3 +1,8 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 // Search function to send query and fetch records 
 async function searchPrisoner() {
     const query = document.getElementById('searchInput').value;
@@ -8,7 +13,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`/adminsearch?query=${query}`);
+        const response = await fetch(`${BASE_URL}/adminsearch?query=${query}`);
         const data = await response.json();
 
         if (data.error) {

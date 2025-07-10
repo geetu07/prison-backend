@@ -1,4 +1,9 @@
-const API_URL = '/parole'; // Ensure this matches your server
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+const API_URL = `${BASE_URL}/parole`; // Ensure this matches your server
 
 // Function to format date to yyyy-MM-dd
 function formatDate(dateString) {

@@ -1,6 +1,12 @@
 // ✅ Fetch all rehabilitation records
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 function fetchRehab() {
-    fetch('/rehabilitation')
+    fetch(`${BASE_URL}/rehabilitation`)
     .then(response => response.json())
     .then(data => {
         const tableBody = document.querySelector('#rehabTable tbody');
@@ -34,7 +40,7 @@ function addRehab() {
         Prisoner_ID: document.getElementById('rehabPrisonerId').value
     };
 
-    fetch('/rehabilitation', {
+    fetch(`${BASE_URL}/rehabilitation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(rehabData)
@@ -50,7 +56,7 @@ function addRehab() {
 
 // ✅ Edit a rehab program
 function editRehab(rehabId) {
-    fetch(`/rehabilitation/${rehabId}`)
+    fetch(`${BASE_URL}/rehabilitation/${rehabId}`)
     .then(response => response.json())
     .then(rehab => {
         document.getElementById('updateRehabId').value = rehab.Rehab_ID;
@@ -72,7 +78,7 @@ function updateRehab() {
         Prisoner_ID: document.getElementById('updateRehabPrisonerId').value
     };
 
-    fetch(`/rehabilitation/${rehabId}`, {
+    fetch(`${BASE_URL}/rehabilitation/${rehabId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(rehabData)
@@ -89,7 +95,7 @@ function updateRehab() {
 // ✅ Delete a rehab program
 function deleteRehab(rehabId) {
     if (confirm("Are you sure you want to delete this rehabilitation program?")) {
-        fetch(`/rehabilitation/${rehabId}`, {
+        fetch(`${BASE_URL}/rehabilitation/${rehabId}`, {
             method: 'DELETE'
         })
         .then(() => {

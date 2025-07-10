@@ -1,3 +1,9 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 document.getElementById("inmateForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -11,7 +17,7 @@ document.getElementById("inmateForm").addEventListener("submit", async function 
     };
 
     try {
-        const response = await fetch("/prisoners/add", {
+        const response = await fetch(`${BASE_URL}/prisoners/add`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)

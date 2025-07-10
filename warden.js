@@ -1,3 +1,8 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 // Function to search prisoners by ID
 async function searchPrisoner() {
     const id = document.getElementById("searchInput").value.trim();
@@ -8,7 +13,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`/prisoners/search?id=${id}`);
+        const response = await fetch(`${BASE_URL}/prisoners/search?id=${id}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -25,7 +30,7 @@ async function searchPrisoner() {
 // Function to fetch all prisoner records
 async function fetchAllRecords() {
     try {
-        const response = await fetch("/prisoners/all");
+        const response = await fetch(`${BASE_URL}/prisoners/all`);
         const data = await response.json();
 
         if (response.ok) {
@@ -42,7 +47,7 @@ async function fetchAllRecords() {
 // Function to fetch all prisoners for enrollment
 async function showEnrollInmate() {
     try {
-        const response = await fetch("/prisoners/all");
+        const response = await fetch(`${BASE_URL}/prisoners/all`);
         const data = await response.json();
 
         if (response.ok) {
@@ -58,7 +63,7 @@ async function showEnrollInmate() {
 
 async function fetchParoleRecords() {
     try {
-        const response = await fetch("/parole/all-unapproved");
+        const response = await fetch(`${BASE_URL}/parole/all-unapproved`);
         const data = await response.json();
 
         if (response.ok) {
@@ -75,7 +80,7 @@ async function fetchParoleRecords() {
 // Function to handle approving parole
 async function approveParole(requestId) {
     try {
-        const response = await fetch('/paroles/approve', {
+        const response = await fetch(`${BASE_URL}/paroles/approve`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -99,7 +104,7 @@ async function approveParole(requestId) {
 
 async function fetchVisitRecords() {
     try {
-        const response = await fetch("/visit/all-unapproved");
+        const response = await fetch(`${BASE_URL}/visit/all-unapproved`);
         const data = await response.json();
 
         if (response.ok) {
@@ -115,7 +120,7 @@ async function fetchVisitRecords() {
 
 // Function to handle approving visitation
 function approveVisit(visitId) {
-    fetch('/visit/approve', {
+    fetch(`${BASE_URL}/visit/approve`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -141,7 +146,7 @@ function approveVisit(visitId) {
 
 // Function to handle rejecting visitation
 function rejectVisit(visitId) {
-    fetch('/visit/reject', {
+    fetch(`${BASE_URL}/visit/reject`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

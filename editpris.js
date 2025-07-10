@@ -1,6 +1,12 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 // Fetch all prisoner records from the database when the page loads
 function fetchPrisoners() {
-    fetch('/prisoners')
+    fetch(`${BASE_URL}/prisoners`)
         .then(response => response.json())
         .then(prisoners => {
             const tableBody = document.querySelector('#prisonersTable tbody');
@@ -30,7 +36,7 @@ function fetchPrisoners() {
 
 // Fetch and fill the form with the selected prisoner's data
 function editPrisoner(prisonerId) {
-    fetch(`/prisoners/${prisonerId}`)
+    fetch(`${BASE_URL}/prisoners/${prisonerId}`)
         .then(response => response.json())
         .then(prisoner => {
             document.getElementById('name').value = prisoner.Name;
@@ -66,7 +72,7 @@ function updatePrisoner() {
         supervisorId,
     };
 
-    fetch(`/prisoners/${prisonerId}`, {
+    fetch(`${BASE_URL}/prisoners/${prisonerId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -90,7 +96,7 @@ function updatePrisoner() {
 // Delete a prisoner record
 function deletePrisoner(prisonerId) {
     if (confirm('Are you sure you want to delete this prisoner?')) {
-        fetch(`/prisoners/${prisonerId}`, {
+        fetch(`${BASE_URL}/prisoners/${prisonerId}`, {
             method: 'DELETE'
         })
         .then(response => {

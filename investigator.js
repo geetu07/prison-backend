@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".search-box button").addEventListener("click", searchPrisoner);
 });
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 
 async function searchPrisoner() {
     const searchQuery = document.getElementById("searchInput").value.trim();
@@ -10,7 +15,7 @@ async function searchPrisoner() {
     }
 
     try {
-        const response = await fetch(`/search?query=${encodeURIComponent(searchQuery)}`);
+        const response = await fetch(`${BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`);
         const data = await response.json();
 
         const prisonerTableBody = document.querySelector("#prisonerTable tbody");

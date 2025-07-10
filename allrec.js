@@ -1,8 +1,13 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 async function fetchAllRecords() {
     console.log('Fetching all records...');
 
     try {
-        const response = await fetch('/allrecord');
+        const response = await fetch(`${BASE_URL}/allrecord`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

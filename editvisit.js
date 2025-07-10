@@ -1,4 +1,10 @@
-const API_URL = '/visit'; // Update this if your server URL is different
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
+const API_URL = `${BASE_URL}/visit`; // Update this if your server URL is different
 
 // Function to format date to yyyy-MM-dd
 function formatDate(dateString) {

@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", fetchCells);
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
 
 function fetchCells() {
-    fetch("/cells")
+    fetch(`${BASE_URL}/cells`)
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector("#cellsTable tbody");
@@ -39,7 +43,7 @@ function updateCell() {
 
     const data = { block, capacity, prisonerId };
 
-    fetch(`/cells/${cellId}`, {
+    fetch(`${BASE_URL}/cells/${cellId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -57,7 +61,7 @@ function updateCell() {
 
 function deleteCell(cellId) {
     if (confirm("Are you sure you want to delete this cell?")) {
-        fetch(`/cells/${cellId}`, {
+        fetch(`${BASE_URL}/cells/${cellId}`, {
             method: "DELETE"
         })
             .then(response => response.json())
@@ -79,7 +83,7 @@ function addCell() {
 
     const data = { block, capacity, prisonerId };
 
-    fetch("/cells", {
+    fetch(`${BASE_URL}/cells`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

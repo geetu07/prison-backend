@@ -1,4 +1,9 @@
 // Function to show the visitation form and hide the parole form
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 function showVisitationForm() {
     document.getElementById('visitationForm').style.display = 'block';
     document.getElementById('paroleForm').style.display = 'none';
@@ -22,7 +27,7 @@ document.querySelector('#visitationForm form').addEventListener('submit', async 
     const date = document.getElementById('date').value;
 
     // Sending data to the backend via POST request
-    const response = await fetch('/submit-visitation', {
+    const response = await fetch(`${BASE_URL}/submit-visitation`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -56,7 +61,7 @@ document.querySelector('#paroleForm form').addEventListener('submit', async func
     const details = document.getElementById('details').value;
 
     // Sending data to the backend via POST request
-    const response = await fetch('/submit-parole', {
+    const response = await fetch(`{BASE_URL}/submit-parole`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

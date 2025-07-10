@@ -1,6 +1,12 @@
 // Fetch all staff records from the database
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 function fetchStaff() {
-    fetch('/staff')  // Adjust the API URL as per your backend
+    fetch(`${BASE_URL}/staff`)  // Adjust the API URL as per your backend
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('#staffTable tbody');
@@ -31,7 +37,7 @@ function fetchStaff() {
 
 // Function to handle the Edit button click
 function editStaff(staffId) {
-    fetch(`/staff/${staffId}`)
+    fetch(`${BASE_URL}/staff/${staffId}`)
         .then(response => response.json())
         .then(staff => {
             document.getElementById('name').value = staff.Name;
@@ -72,7 +78,7 @@ function updateStaff() {
     };
 
     // Send PUT request to update staff details
-    fetch(`/staff/${staffId}`, {
+    fetch(`${BASE_URL}/staff/${staffId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -108,7 +114,7 @@ function addStaff() {
         address
     };
 
-    fetch('/staff', {
+    fetch(`${BASE_URL}/staff`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -130,7 +136,7 @@ function addStaff() {
 function deleteStaff(staffId) {
     const confirmDelete = confirm("Are you sure you want to delete this staff member?");
     if (confirmDelete) {
-        fetch(`/staff/${staffId}`, {
+        fetch(`${BASE_URL}/staff/${staffId}`, {
             method: 'DELETE'
         })
         .then(response => response.json())

@@ -1,3 +1,8 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
 // Function to handle Add Crime
 function addCrime() {
     const crimeName = document.getElementById('crimeName').value;
@@ -18,7 +23,7 @@ function addCrime() {
         Prisoner_ID: prisonerId
     };
 
-    fetch('/crime', {
+    fetch(`${BASE_URL}/crime`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -58,7 +63,7 @@ function updateCrime() {
         Prisoner_ID: prisonerId
     };
 
-    fetch(`/crime/${crimeId}`, {
+    fetch(`${BASE_URL}/crime/${crimeId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -79,7 +84,7 @@ function updateCrime() {
 
 // Function to populate the Update form with data from the server
 function editCrime(crimeId) {
-    fetch(`/crime/${crimeId}`)
+    fetch(`${BASE_URL}/crime/${crimeId}`)
         .then(response => response.json())
         .then(crime => {
             // Fill in the update form with the existing data
@@ -100,7 +105,7 @@ function editCrime(crimeId) {
 
 // Function to fetch all crime records from the database
 function fetchCrimes() {
-    fetch('/crime')  // Adjust the API URL as per your backend
+    fetch(`${BASE_URL}/crime`)  // Adjust the API URL as per your backend
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('#crimeTable tbody');
@@ -131,7 +136,7 @@ function fetchCrimes() {
 function deleteCrime(crimeId) {
     const confirmDelete = confirm("Are you sure you want to delete this crime record?");
     if (confirmDelete) {
-        fetch(`/crime/${crimeId}`, {
+        fetch(`${BASE_URL}/crime/${crimeId}`, {
             method: 'DELETE'
         })
         .then(response => response.json())
@@ -143,7 +148,7 @@ function deleteCrime(crimeId) {
             alert('Failed to delete crime record.');
             console.error('Error:', error);
         });
-}
+    }
 }
 // Function to clear the Add form
 function clearAddForm() {

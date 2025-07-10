@@ -1,3 +1,9 @@
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://prison-backend-production.up.railway.app";
+
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Login script loaded!");
 
@@ -24,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Username:", username, "Password:", password);
 
         try {
-            const response = await fetch('/login', {
+            const response = await fetch(`${BASE_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
